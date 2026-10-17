@@ -23,6 +23,7 @@ import {
 	request,
 } from './api.js';
 import { Failure, Field, Pager, useDebounced, useMutation } from './shared.js';
+import { RED_CROSS_LOGO } from './logo.js';
 import './styles.css';
 
 type Tab = 'members' | 'fund' | 'documents';
@@ -1002,10 +1003,19 @@ function Workspace() {
 	return (
 		<div className="rc-app">
 			<header className="rc-header">
-				<div>
-					<p className="rc-eyebrow">Hội Chữ thập đỏ</p>
-					<h1>Khu vực quản trị dữ liệu</h1>
-					<p>Hội viên, quỹ thu–chi và hồ sơ văn bản của Hội.</p>
+				<div className="rc-brand">
+					<img
+						className="rc-brand-logo"
+						src={RED_CROSS_LOGO}
+						alt="Biểu trưng Hội Chữ thập đỏ Việt Nam"
+						width={256}
+						height={256}
+					/>
+					<div className="rc-brand-text">
+						<p className="rc-eyebrow">Hội Chữ thập đỏ</p>
+						<h1>Khu vực quản trị dữ liệu</h1>
+						<p>Hội viên, quỹ thu–chi và hồ sơ văn bản của Hội.</p>
+					</div>
 				</div>
 				{info && <span className="rc-currency">{info.currency} · không đơn vị lẻ</span>}
 			</header>
