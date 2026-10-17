@@ -29,6 +29,24 @@
 	flex-wrap: wrap;
 	margin-bottom: 14px;
 }
+.rc-brand {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	flex: 1 1 280px;
+	min-width: 0;
+}
+.rc-brand-logo {
+	display: block;
+	flex: 0 0 auto;
+	width: 72px;
+	height: 72px;
+	object-fit: contain;
+}
+.rc-brand-text {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
 .rc-header h1 {
 	font-size: 20px;
 	letter-spacing: -0.01em;
@@ -462,6 +480,13 @@ button:disabled {
 }
 
 @media (max-width: 760px) {
+	.rc-brand {
+		gap: 12px;
+	}
+	.rc-brand-logo {
+		width: 56px;
+		height: 56px;
+	}
 	.rc-kpis {
 		grid-template-columns: 1fr 1fr;
 	}

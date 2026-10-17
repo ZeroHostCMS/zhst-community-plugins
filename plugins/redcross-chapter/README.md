@@ -64,6 +64,14 @@ import { redcrossChapterPlugin } from "@zerohost/plugin-redcross-chapter";
 
 The admin workspace appears in the EmDash admin under Plugins.
 
+### Workspace emblem
+
+The shared workspace header displays the supplied **Vietnam Red Cross** emblem on the Hội viên, Quỹ (Thu – Chi), and Văn bản tabs. It has Vietnamese alternative text and preserves the artwork's aspect ratio and transparency; the header wraps and uses a smaller emblem on narrow screens. The host's native admin navigation icon, login shell, permissions, services and storage are unchanged.
+
+`src/admin/logo.ts` embeds a static `data:image/webp;base64,…` URL from a losslessly encoded transparent 256 × 256 derivative of the user-supplied 1200 × 1200 `logo-cross-vn.webp`. This is the supplied artwork, not a recreated symbol. The raw `./admin` TSX export imports the constant directly: no image loader, runtime encoding, public asset endpoint, media subscription or network image request is required.
+
+**Asset rights:** the emblem is user-supplied national Red Cross artwork. Its inclusion does not establish a redistribution licence or permission to use a protected emblem. The package's MIT licence covers its code, not rights to this emblem; operators and redistributors must obtain any required authorization and comply with applicable Red Cross emblem protections.
+
 ## CSV format
 
 Header row, comma-separated, UTF-8. Recognised columns (Vietnamese or English):
@@ -89,4 +97,4 @@ The plugin stores a **file URL** (and display file name) rather than uploading b
 
 ## License
 
-MIT. See `LICENSE`.
+Code: MIT. See `LICENSE`. The supplied Vietnam Red Cross emblem is excluded from this code licence; see [Workspace emblem](#workspace-emblem) for provenance and rights.
