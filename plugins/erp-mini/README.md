@@ -95,6 +95,8 @@ After book setup on either runtime, **Accounting → Accounts → Nhập từ b�
 
 **Sổ HKD** supports household/individual-business books separately from those enterprise TT133/TT99 catalogs. The [HKD operator guide](docs/accounting.md#hkd-tt1522025) owns method/book selection, annual setup, record/correct/view/export/print, periodic stock valuation, operator-declared tax/cost bases, retention and uncertain-command recovery.
 
+The [Vietnamese HKD screenshot and voiceover guide](docs/hkd-video-guide/README.md) provides ordered synthetic-data captures, beginner procedures and frame-matched narration for training videos; its dated local-runtime evidence is not a running hosted demo or tax certification.
+
 Both runtimes require accounting **schema3**. Node startup or Cloudflare's separately authorized operator migration upgrades exact checksummed schema1/2 prefixes without business seeds; unknown or drifted resources fail closed. Stop old writers and take the [runtime-appropriate paired backup before schema upgrades](docs/accounting-storage.md#schema-upgrades). Upgrade is forward-only: older schema1/2 code refuses schema3; rollback restores coherent matching resources, code and key, not a down-migration. Record/book format versions remain independent of the storage schema.
 
 ## Pack and distribute an approved native plugin

@@ -1,0 +1,236 @@
+{
+  "format": 1,
+  "recordingDate": "2026-10-17",
+  "scope": "Native dev browser walkthroughs and exports on synthetic isolated installations; no application source changes, no full-suite rerun, no production/provider validation",
+  "checks": [
+    {
+      "book": "S2b-HKD",
+      "expected": {
+        "Doanh thu (VND)": "3000000",
+        "Thuế GTGT": "30000"
+      },
+      "rows": [
+        [
+          "Bán hàng DEMO — GTGT 100 bps",
+          "Doanh thu (VND)",
+          "3000000"
+        ],
+        [
+          "Bán hàng DEMO — GTGT 100 bps",
+          "Doanh thu tính GTGT (VND)",
+          "3000000"
+        ],
+        [
+          "Bán hàng DEMO — GTGT 100 bps",
+          "Thuế GTGT (VND)",
+          "30000"
+        ],
+        [
+          "Tổng cộng",
+          "Doanh thu (VND)",
+          "3000000"
+        ],
+        [
+          "Tổng cộng",
+          "Doanh thu tính GTGT (VND)",
+          "3000000"
+        ],
+        [
+          "Tổng cộng",
+          "Thuế GTGT (VND)",
+          "30000"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "book": "S2c-HKD",
+      "stage": "before-correction",
+      "expected": {
+        "Doanh thu tính TNCN (VND)": "3000000",
+        "Tổng chi phí được trừ": "1150000",
+        "Chênh lệch doanh thu − chi phí": "1850000",
+        "Thuế TNCN trên thu nhập": "314500"
+      },
+      "passed": true
+    },
+    {
+      "book": "S2c-HKD",
+      "stage": "after-correction",
+      "expected": {
+        "Doanh thu tính TNCN (VND)": "3000000",
+        "Tổng chi phí được trừ": "1200000",
+        "Chênh lệch doanh thu − chi phí": "1800000",
+        "Thuế TNCN trên thu nhập": "306000"
+      },
+      "passed": true
+    },
+    {
+      "code": "HKD_NEGATIVE_MONEY",
+      "message": "This change would make the chronological fund balance negative.",
+      "committed": false,
+      "passed": true
+    },
+    {
+      "code": "HKD_OPENING_REQUIRED",
+      "message": "Record exactly one explicit opening for each cash/bank/payment-provider fund.",
+      "committed": false,
+      "passed": true
+    },
+    {
+      "scenario": "post-commit response loss",
+      "sameReceipt": true,
+      "exactlyOnePostedEntry": true,
+      "sequence": 16,
+      "registryCleared": true,
+      "passed": true
+    },
+    {
+      "fixtureCreation": "29 synthetic rows through authenticated API plus one recovered UI entry; no bulk-import UI implied",
+      "rowsOnFirstPage": 25,
+      "asOfSequence": 45,
+      "totalRevenue": "300000",
+      "totalVat": "3000",
+      "passed": true
+    },
+    {
+      "scenario": "actual downloaded CSV from page two",
+      "rows": 30,
+      "distinctDocuments": 30,
+      "lastDocument": "FEB-030",
+      "revenue": "300000",
+      "vat": "3000",
+      "identityAndSignature": true,
+      "passed": true
+    },
+    {
+      "scenario": "actual full print document",
+      "rows": 30,
+      "lastDocument": "FEB-030",
+      "identityAndSignature": true,
+      "printMedia": true,
+      "nativeDialog": "held only for content capture; OS print dialog not recorded",
+      "passed": true
+    },
+    {
+      "scenario": "native mobile emulation at 390 CSS px",
+      "viewport": 390,
+      "documentWidth": 390,
+      "tableViewport": 308,
+      "tableWidth": 1353,
+      "tableScrollLeft": 1045,
+      "passed": true
+    },
+    {
+      "scenario": "final January and event-history reconciliation",
+      "policy": "2026 income/month/17% illustrative/other taxes",
+      "revenue": "3000000",
+      "vat": "30000",
+      "deductible": "1200000",
+      "income": "1800000",
+      "incomeTax": "306000",
+      "stockOut": "750000",
+      "stockClosing": {
+        "quantity": "15",
+        "value": "2250000"
+      },
+      "cashClosing": "2500000",
+      "bankClosing": "1000000",
+      "otherTax": "100000",
+      "postedEntriesIncludingVoided": 44,
+      "voidedEntries": 1,
+      "rejectedEntriesAbsent": true,
+      "recoveredEntryExactlyOnce": true,
+      "asOfSequence": 45,
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "scenario": "separate 2026 revenue/quarter installation",
+      "revenue": "1000000",
+      "vat": "10000",
+      "pit": "5000",
+      "from": "2026-01-01",
+      "to": "2026-03-31",
+      "rows": 1,
+      "passed": true
+    },
+    {
+      "scenario": "separate 2026 exempt/year installation",
+      "revenue": "500000",
+      "rows": 1,
+      "vatPitNotMisrepresentedAsZero": true,
+      "from": "2026-01-01",
+      "to": "2026-12-31",
+      "passed": true
+    },
+    {
+      "scenario": "clean running user development instance",
+      "origin": "http://localhost:4337",
+      "needsSetup": true,
+      "anonymousDenied": [
+        {
+          "action": "hkd-info",
+          "status": 401,
+          "code": "AUTH_REQUIRED"
+        },
+        {
+          "action": "hkd-configure",
+          "status": 401,
+          "code": "AUTH_REQUIRED"
+        },
+        {
+          "action": "hkd-post-entry",
+          "status": 401,
+          "code": "AUTH_REQUIRED"
+        },
+        {
+          "action": "hkd-void-entry",
+          "status": 401,
+          "code": "AUTH_REQUIRED"
+        },
+        {
+          "action": "hkd-list",
+          "status": 401,
+          "code": "AUTH_REQUIRED"
+        },
+        {
+          "action": "hkd-report",
+          "status": 401,
+          "code": "AUTH_REQUIRED"
+        }
+      ],
+      "encryptionKeyMode": "600",
+      "passed": true
+    }
+  ],
+  "artifacts": {
+    "numberedScreenshots": 54,
+    "narratedScenes": 54,
+    "narrationWhitespaceUnits": 6056,
+    "estimatedTotalReadingMinutes": 43,
+    "estimatesAreNotAudioTimecodes": true,
+    "sampleCsv": "exports/S2b-HKD-2026-2.csv",
+    "samplePdf": "exports/S2b-HKD-2026-2.pdf",
+    "pdfPages": 2
+  },
+  "limitations": [
+    "Only synthetic local data; no tax/legal approval or live provider behavior proved",
+    "Mobile checked by native browser emulation, not a physical device",
+    "Native OS passkey/confirm/print dialogs not captured",
+    "Recording profiles are independent, immutable same-year policies, not method switches",
+    "Fresh user dev must be claimed by its actual user; private .env/database/media not in this bundle"
+  ],
+  "artifactValidation": {
+    "passed": true,
+    "publicFiles": 67,
+    "numberedPngs": 54,
+    "allOriginalsDecodedInChromium": true,
+    "internalLinksResolved": 175,
+    "sceneToImageAndNarrationMappings": 54,
+    "downloadedCsvDistinctDocuments": 30,
+    "noSymlinks": true,
+    "noPrivateRuntimeFiles": true,
+    "noStale4322LinksOrExposedKeysInPublicMarkdown": true
+  }
+}
