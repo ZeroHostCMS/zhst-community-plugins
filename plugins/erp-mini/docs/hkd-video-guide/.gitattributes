@@ -1,0 +1,2 @@
+# Preserve downloadable CSV bytes so capture-manifest checksums survive checkout.
+*.csv -text whitespace=cr-at-eol

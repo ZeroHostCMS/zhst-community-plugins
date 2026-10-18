@@ -1,0 +1,1055 @@
+{
+  "format": 1,
+  "description": "54 actual native application captures with synthetic training data; no OS-dialog screenshots or audio track",
+  "recordingDate": "2026-10-17",
+  "userDevelopmentOrigin": "http://localhost:4337",
+  "recordingOriginsAreStopped": true,
+  "timingEstimatesAreNotSynchronizedAudio": true,
+  "frames": [
+    {
+      "id": "001",
+      "file": "images/001-home.png",
+      "title": "Trang mở đầu của ERP mini",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:47:28.253Z",
+      "sourceUrl": "http://localhost:4323/",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 74788,
+      "sha256": "8f85c967776b21857ae3ccb30edea5c8cce241be9bd959ed6a15956b891bf0be"
+    },
+    {
+      "id": "002",
+      "file": "images/002-setup-site.png",
+      "title": "Đặt tên site minh họa và bắt đầu bằng site trống",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:51:33.882Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/setup",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 53375,
+      "sha256": "a28fd855c2c5748b78dc3d0258bade652c41a0bbb457ad953945cf20f8abadc0"
+    },
+    {
+      "id": "003",
+      "file": "images/003-setup-admin.png",
+      "title": "Tạo tài khoản quản trị bằng danh tính giả lập",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:51:40.228Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/setup",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 34736,
+      "sha256": "a69189742ab1876bf45cdce00f2215cfa23e1655b98ac516d9120b5b7bebd2b6"
+    },
+    {
+      "id": "004",
+      "file": "images/004-passkey-choice.png",
+      "title": "Màn hình giải thích tạo passkey, trước hộp thoại bảo mật hệ điều hành",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:51:45.645Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/setup",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 69550,
+      "sha256": "6c937251052078e4d2d86296d3425454ae37b282386441fcef8069d697e7391f"
+    },
+    {
+      "id": "005",
+      "file": "images/005-setup-complete.png",
+      "title": "Passkey được tạo thành công bằng luồng xác thực thật",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:52:07.020Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/setup",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 40070,
+      "sha256": "ebf23b68b41387bcf1cc71559bbdec779fbde454d8cce0cad595b6aeb9a6b311"
+    },
+    {
+      "id": "006",
+      "file": "images/006-signin.png",
+      "title": "Đăng nhập bằng passkey đã đăng ký",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:52:33.541Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/login?redirect=%2F_emdash%2Fadmin",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 35431,
+      "sha256": "e1d040c9832602585f0701507969805353fbc19751872afce876842c13d29fd1"
+    },
+    {
+      "id": "007",
+      "file": "images/007-dashboard.png",
+      "title": "Dashboard đã tải đầy đủ và chuyển sang giao diện sáng",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:53:28.240Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 78527,
+      "sha256": "378aa4cedcbf83cd1d25ba594a3f304041cf424bbdbb1f65cb7eba4e1b71e13c"
+    },
+    {
+      "id": "008",
+      "file": "images/008-workspace.png",
+      "title": "Workspace VND; Sổ HKD riêng với CRM và Accounting",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:53:28.492Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 107191,
+      "sha256": "03ebd0700a4d11af2e23994f7b8aefbfdcc6cc2ef7394f71d33252a1fe077536"
+    },
+    {
+      "id": "009",
+      "file": "images/009-hkd-empty.png",
+      "title": "Sổ HKD chưa có hồ sơ năm trên cài đặt VND mới",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:53:39.820Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 136908,
+      "sha256": "f33e73ad0bab11fe0678d2b76ec3938b0563d436661bec1972213a87813c34f0"
+    },
+    {
+      "id": "010",
+      "file": "images/010-income-policy-form.png",
+      "title": "Kiểm tra hồ sơ thu nhập năm 2026, kỳ tháng, thuế suất ví dụ 17%, có S3a",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:53:40.675Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 150054,
+      "sha256": "e7f35a03044ae91d5feb6a701f797d7d73f7ef07c62161609eeb9e6d525f122c"
+    },
+    {
+      "id": "011",
+      "file": "images/011-income-profile-created.png",
+      "title": "Hồ sơ thu nhập được lưu, danh sách chưa có nghiệp vụ",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:54:26.962Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 181004,
+      "sha256": "84b2c2abcc8d4c0b3a57bfbafed6344c046ce9be34d5cc515500127e9340988d"
+    },
+    {
+      "id": "012",
+      "file": "images/012-stock-opening-form.png",
+      "title": "Khai đầu kỳ 10 kg, tổng giá trị 1.000.000 đồng",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:54:27.753Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 148464,
+      "sha256": "c236c9f4ce5764b930ffcafbfae1d8732142a1662ef8bf78d57218597e75ceb2"
+    },
+    {
+      "id": "013",
+      "file": "images/013-stock-out-form.png",
+      "title": "Ghi xuất 5 kg; không có trường giá trị xuất",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:54:42.984Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 139163,
+      "sha256": "725dcf97fab64970d1d1673c1387d7c04d32ebd07d5ac1055a9c1b9fcafd898f"
+    },
+    {
+      "id": "014",
+      "file": "images/014-stock-before-receipt.png",
+      "title": "Trước khi có nhập: xuất 500.000, tồn 5 kg / 500.000",
+      "notes": "Replayed on a separate fresh synthetic installation solely to expose the full pre-receipt numeric table; the main demo history was not rewound.",
+      "capturedAt": "2026-10-17T16:06:05.102Z",
+      "sourceUrl": "http://localhost:4326/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1718,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1718
+      },
+      "bytes": 298570,
+      "sha256": "f8a02c33937a6db89313811ea60ba529341533c12387e1fb27210937eab180cf"
+    },
+    {
+      "id": "015",
+      "file": "images/015-stock-in-form.png",
+      "title": "Nhập 10 kg với tổng giá trị 2.000.000 đồng trong cùng tháng",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:54:50.978Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 143099,
+      "sha256": "bf1e97cee019bf9fb60a1367680307de9ad8f76bb8484030a60a4b94018e1f8a"
+    },
+    {
+      "id": "016",
+      "file": "images/016-stock-after-receipt.png",
+      "title": "S2d sau nhập đủ: bình quân 150.000/kg, xuất 750.000, tồn 15 kg / 2.250.000",
+      "notes": "Reframed after later non-stock postings; the stock quantities, values and January stock rows are unchanged.",
+      "capturedAt": "2026-10-17T15:59:20.425Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1785,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1785
+      },
+      "bytes": 306319,
+      "sha256": "156165cd7efba074a7b1ebfec1621399f66d9571fbe16201fb2077b04d797e82"
+    },
+    {
+      "id": "017",
+      "file": "images/017-cash-opening-form.png",
+      "title": "Khai đầu kỳ quỹ tiền mặt 2.000.000 đồng",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:56:34.446Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 161212,
+      "sha256": "7002877fc23d5952d3d7642e634d99769df312ce3fbe565f6c673385ff936409"
+    },
+    {
+      "id": "018",
+      "file": "images/018-bank-opening-form.png",
+      "title": "Ngân hàng DEMO khai mở đầu rõ bằng 0",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:56:35.257Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 168033,
+      "sha256": "d2fc1eb0731c356c5753274f7236b707fde9addc2da0ddc2bc0f6b28db689764"
+    },
+    {
+      "id": "019",
+      "file": "images/019-bank-in-form.png",
+      "title": "Ghi tiền chủ hộ bổ sung vào ngân hàng, không tự ghi doanh thu",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:56:36.075Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 164969,
+      "sha256": "f494f67cb4a2affd5ba4370eb059cd2e37a516128337fe7639fe80875e81166e"
+    },
+    {
+      "id": "020",
+      "file": "images/020-income-revenue-form.png",
+      "title": "Doanh thu 3.000.000; căn cứ GTGT và thu nhập khai riêng, GTGT ví dụ 1%",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:56:58.082Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 141619,
+      "sha256": "e0a2495c975d56df0f265b816985e43da6a1480af8983bc64a9c3cebb976bb40"
+    },
+    {
+      "id": "021",
+      "file": "images/021-cash-in-form.png",
+      "title": "Thu 3.000.000 tiền mặt riêng với chứng từ doanh thu",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:56:58.836Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 154894,
+      "sha256": "49572fa6f0274e1f04d2d7424408e5f65bedd3843c929587484564db03f0c637"
+    },
+    {
+      "id": "022",
+      "file": "images/022-cogs-expense-form.png",
+      "title": "Ghi riêng giá vốn 750.000 sau đối chiếu S2d; tự xác nhận căn cứ được trừ",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:56:59.689Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 168004,
+      "sha256": "3e04a1873fcce145a4db9134162cc6bc1fe6c212e241b6d13d677b2bdeaf341c"
+    },
+    {
+      "id": "023",
+      "file": "images/023-services-expense-form.png",
+      "title": "Chi phí thực tế 500.000, phần được trừ minh họa 400.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:57:10.367Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 169462,
+      "sha256": "ed6b981f5306a26867f6d3a41ab6ac288a2b32ac0f2f74d35f0c0a7f1a43fe04"
+    },
+    {
+      "id": "024",
+      "file": "images/024-services-payment-form.png",
+      "title": "Chi tiền thực tế 500.000, không thay bằng phần chi phí được trừ",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:57:11.202Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 156144,
+      "sha256": "3d75691de47ae122e97fd1711434492b03d71277fa76b3ef6cc983fafa1f998a"
+    },
+    {
+      "id": "025",
+      "file": "images/025-supplier-payment-form.png",
+      "title": "Chi tiền nhà cung cấp 2.000.000 riêng với nhập kho và giá vốn",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:57:12.102Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 157003,
+      "sha256": "7432df7522d26fca0f4fb8dede63c1a67d5f001edcc116f671fdef6fa3f98940"
+    },
+    {
+      "id": "026",
+      "file": "images/026-other-tax-form.png",
+      "title": "Ví dụ nghĩa vụ thuế khác: 100 đơn vị × 1.000 đồng = 100.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:57:13.077Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 152933,
+      "sha256": "9317306de228ffb7da3e20c83fdbcbe585c139079343f073f640959ef9487209"
+    },
+    {
+      "id": "027",
+      "file": "images/027-book-s2b.png",
+      "title": "S2b: doanh thu 3.000.000, GTGT 30.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:59:19.662Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1307,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1307
+      },
+      "bytes": 222110,
+      "sha256": "caf4180ff3c1791c2d60898ce5f050492a2b1748ae49e1f11f0def8da37a6488"
+    },
+    {
+      "id": "028",
+      "file": "images/028-book-s2c.png",
+      "title": "S2c trước sửa: doanh thu 3.000.000, được trừ 1.150.000, TNCN ví dụ 314.500",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:59:19.364Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1797,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1797
+      },
+      "bytes": 282658,
+      "sha256": "f9f7071f45d8a690022952c82bfa2544c17d5e58ac770810db73d4fe1ff91d3a"
+    },
+    {
+      "id": "029",
+      "file": "images/029-book-s2d-left.png",
+      "title": "S2d bên trái: mặt hàng, ngày và chứng từ",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:59:19.991Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1785,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1785
+      },
+      "bytes": 317807,
+      "sha256": "2acbdb7905d7656b5419c56d7995c8b1ab7afcd783267250527c73ddf3716859"
+    },
+    {
+      "id": "030",
+      "file": "images/030-book-s2d-right.png",
+      "title": "Cùng S2d: cuộn ngang xem lượng xuất 5 / 750.000, tồn 15 / 2.250.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:59:20.237Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1785,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1785
+      },
+      "bytes": 306319,
+      "sha256": "156165cd7efba074a7b1ebfec1621399f66d9571fbe16201fb2077b04d797e82"
+    },
+    {
+      "id": "031",
+      "file": "images/031-book-s2e.png",
+      "title": "S2e: tiền mặt cuối kỳ 2.500.000; ngân hàng cuối kỳ 1.000.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:59:53.965Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1760,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1760
+      },
+      "bytes": 266294,
+      "sha256": "0cb72d2c6695eafbaef52bf0f314c9f8faaaed7b330836d1473180a13a80ae16"
+    },
+    {
+      "id": "032",
+      "file": "images/032-book-s3a.png",
+      "title": "S3a: nghĩa vụ thuế minh họa 100.000, không đồng nghĩa đã nộp tiền",
+      "notes": "",
+      "capturedAt": "2026-10-17T15:59:54.241Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1328,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1328
+      },
+      "bytes": 221731,
+      "sha256": "0c95987cf8961baea26b82c31c155c1e8382845ed0ab31f9bed05a63f28c7457"
+    },
+    {
+      "id": "033",
+      "file": "images/033-void-services-reason.png",
+      "title": "Hủy DV-001 với lý do điều chỉnh căn cứ được trừ; không xóa chứng từ",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:00:45.866Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 189452,
+      "sha256": "3ca0e1b12310e4fe95f10a6a8e8fc7a753d875cbe9f74bd291330c811c63b087"
+    },
+    {
+      "id": "034",
+      "file": "images/034-void-services-history.png",
+      "title": "DV-001 vẫn giữ chi tiết gốc 500.000 / 400.000 và lý do hủy",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:01:24.803Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 237686,
+      "sha256": "48a508085d8c99c31f7412d874c0714441d87b3c9e1bcd74bc940c87c86be41b"
+    },
+    {
+      "id": "035",
+      "file": "images/035-corrected-services-form.png",
+      "title": "Ghi DV-001-DC thay thế: thực tế 500.000, được trừ 450.000; không chi tiền lần hai",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:01:25.647Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 168827,
+      "sha256": "a34ee5d7856def609f4e155b4a82e155ecead6a96eaad94019c647a451890fc5"
+    },
+    {
+      "id": "036",
+      "file": "images/036-corrected-book-s2c.png",
+      "title": "S2c sau sửa: được trừ 1.200.000, thu nhập 1.800.000, TNCN ví dụ 306.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:01:26.344Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1776,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1776
+      },
+      "bytes": 280741,
+      "sha256": "59020ffd1b017b28f0606055a52966c0b0973bb0292fc8cd8e502332920a3be4"
+    },
+    {
+      "id": "037",
+      "file": "images/037-insufficient-funds-error.png",
+      "title": "Lệnh chi 3.000.000 bị từ chối vì quỹ chỉ có 2.500.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:06:59.123Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1700,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1700
+      },
+      "bytes": 228117,
+      "sha256": "05cfc376f1c5a8925395ad2db9cf9d96e2d5aa08ccf043729effc6e56afc6f4c"
+    },
+    {
+      "id": "038",
+      "file": "images/038-missing-opening-error.png",
+      "title": "Ngân hàng mới bị chặn vì thiếu mở đầu rõ ràng, kể cả bằng 0",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:07:39.236Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1700,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1700
+      },
+      "bytes": 237695,
+      "sha256": "b450864a449027e2b06d12980f110f931d811578efd37832b60dd63d06d5c206"
+    },
+    {
+      "id": "039",
+      "file": "images/039-uncertain-command.png",
+      "title": "Phản hồi bị mất sau commit thật; UI giữ lệnh gốc và khóa ghi mới",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:09:26.149Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1300,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1300
+      },
+      "bytes": 217914,
+      "sha256": "86e854c341ae7f9c12073122079415b47d7c5e836d59008d2eb7fb049364005e"
+    },
+    {
+      "id": "040",
+      "file": "images/040-reloaded-uncertain-command.png",
+      "title": "Sau tải lại: lệnh và nội dung giữ nguyên, mở chi tiết để đối chiếu",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:09:42.838Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1600,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1600
+      },
+      "bytes": 221646,
+      "sha256": "63084195e2553702da0b120789096f232b91edaf04c4f1a9327dce06b7ed6d20"
+    },
+    {
+      "id": "041",
+      "file": "images/041-reconciled-command.png",
+      "title": "Đối soát trả đúng biên nhận cũ #16, chỉ một BH-REC-001, gỡ khóa",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:09:43.239Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 256181,
+      "sha256": "49262aa1e951201a659450a81bcb0c0217843ada16887de61c02a7a330da4b55"
+    },
+    {
+      "id": "042",
+      "file": "images/042-february-report-page-1.png",
+      "title": "Tháng 2: trang đầu 25 dòng; tổng cả kỳ 300.000 và GTGT 3.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:11:43.620Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 2800,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 2800
+      },
+      "bytes": 336692,
+      "sha256": "d9a1a8dabd1561eb29d03bd6fdcc3e82a6d168f4254829e235866d7af9a5c352"
+    },
+    {
+      "id": "043",
+      "file": "images/043-february-report-page-2.png",
+      "title": "Trang 2 còn 5 dòng, cùng ảnh chụp #45 và tổng toàn kỳ",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:11:43.936Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1680,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1680
+      },
+      "bytes": 260090,
+      "sha256": "c62b6337582df564dad693ff86ab96047e043749d538324cb8fef7cd2666f5af"
+    },
+    {
+      "id": "044",
+      "file": "images/044-full-csv-export.png",
+      "title": "Từ trang 2 chỉ 5 dòng, CSV vẫn tải đầy đủ 30 dòng của cùng ảnh chụp",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:12:46.792Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 175260,
+      "sha256": "fd91241ee5456cb7c262445bd79e517d180da097b6c90562bf10df2e89318b53"
+    },
+    {
+      "id": "045",
+      "file": "images/045-full-print-preview.png",
+      "title": "Nội dung in thật đủ 30 dòng, tổng, danh tính và chữ ký; không phải hộp thoại hệ điều hành",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:14:08.389Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1355
+      },
+      "bytes": 235537,
+      "sha256": "ff6f74edb564c4e918d2f1ffe73f8dbbe46e0adedc760d3581d111ae95fdaee5"
+    },
+    {
+      "id": "046",
+      "file": "images/046-mobile-report.png",
+      "title": "Điện thoại: vuốt ngang riêng bảng để xem tiền và thuế; toàn trang không tràn ngang",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:16:23.199Z",
+      "sourceUrl": "http://localhost:4323/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 2,
+        "isMobile": true,
+        "hasTouch": true
+      },
+      "pixels": {
+        "width": 780,
+        "height": 1688
+      },
+      "bytes": 31773,
+      "sha256": "1b6211eea6f01117891820987ef7af85f4570cfb0fa2a66451662cfb0f0c8065"
+    },
+    {
+      "id": "047",
+      "file": "images/047-revenue-policy-form.png",
+      "title": "Cài đặt demo riêng: hồ sơ 2026 theo tỷ lệ doanh thu, kỳ quý, không S3a",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:22:29.922Z",
+      "sourceUrl": "http://localhost:4324/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 154559,
+      "sha256": "46f83acabf124b1a740c95690866b48505ae792911a588af83a3ce7eef9544fc"
+    },
+    {
+      "id": "048",
+      "file": "images/048-revenue-profile-created.png",
+      "title": "Hồ sơ doanh thu 2026 đã xác nhận, kỳ quý, chỉ S2a",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:22:54.324Z",
+      "sourceUrl": "http://localhost:4324/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 180288,
+      "sha256": "d60f0f3ef7f98bf7715dd65c62bcea88fcd985df2a571cf115f7de7e6ba88b0c"
+    },
+    {
+      "id": "049",
+      "file": "images/049-revenue-entry-form.png",
+      "title": "Doanh thu 1.000.000; GTGT ví dụ 1%, TNCN doanh thu ví dụ 0,5%, nhập riêng căn cứ",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:22:55.224Z",
+      "sourceUrl": "http://localhost:4324/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 150427,
+      "sha256": "516a2d29593b2e91ef16f39deb36e947ca8252e6568e4209f9741c3ac439e018"
+    },
+    {
+      "id": "050",
+      "file": "images/050-book-s2a.png",
+      "title": "S2a quý 1: doanh thu 1.000.000, GTGT 10.000, TNCN ví dụ 5.000",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:22:55.723Z",
+      "sourceUrl": "http://localhost:4324/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1554,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1554
+      },
+      "bytes": 255649,
+      "sha256": "3541ba9db6c4667b405e0b14b296f775f2f85de92fe013401e811bb770aa83ef"
+    },
+    {
+      "id": "051",
+      "file": "images/051-exempt-policy-form.png",
+      "title": "Cài đặt riêng: S1a năm 2026, kỳ năm, không tự xét điều kiện miễn thuế",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:26:09.101Z",
+      "sourceUrl": "http://localhost:4325/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 154832,
+      "sha256": "bd7e285ec31b70ab805e872b4406037e43f13f4e36b41cd1c3932e8364705d09"
+    },
+    {
+      "id": "052",
+      "file": "images/052-exempt-revenue-form.png",
+      "title": "Doanh thu S1a 500.000; biểu mẫu không có căn cứ hoặc tỷ lệ GTGT/TNCN",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:26:09.874Z",
+      "sourceUrl": "http://localhost:4325/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 161157,
+      "sha256": "5f317b99eb27e4117293d90908e61f3e9845ed613559cc38a3ecc1dabdcf2255"
+    },
+    {
+      "id": "053",
+      "file": "images/053-book-s1a.png",
+      "title": "S1a cả năm: doanh thu 500.000, không trình bày thuế GTGT/TNCN bằng 0",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:26:10.392Z",
+      "sourceUrl": "http://localhost:4325/_emdash/admin/plugins/erp-mini/workspace?erpTab=hkd",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 185139,
+      "sha256": "ef2535e5bd1859cfe250478875c283b331998cac1caedf03c2bf7e48f58b2e56"
+    },
+    {
+      "id": "054",
+      "file": "images/054-fresh-user-dev.png",
+      "title": "Dev sạch đang chạy tại localhost:4337; chưa nhận chủ, bạn tự tạo tài khoản và passkey",
+      "notes": "",
+      "capturedAt": "2026-10-17T16:27:17.067Z",
+      "sourceUrl": "http://localhost:4337/_emdash/admin/setup",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "deviceScaleFactor": 1
+      },
+      "pixels": {
+        "width": 1920,
+        "height": 1080
+      },
+      "bytes": 51268,
+      "sha256": "f385fca465d47e14efeafb810e2920306677be9f6992f2608f2495c4acafa274"
+    }
+  ],
+  "additionalArtifacts": [
+    {
+      "file": "exports/S2b-HKD-2026-2.csv",
+      "bytes": 5416,
+      "sha256": "ab460dea8bf6da8bfa52deca31338067df1c62aba455a16095deed33b1b924d9"
+    },
+    {
+      "file": "exports/S2b-HKD-2026-2.pdf",
+      "bytes": 334310,
+      "sha256": "85b00a8db2336399ced460ba5273ef35fa8a5f8ddfc46771da64acd7e8f47ebd"
+    },
+    {
+      "file": "contact-sheet.png",
+      "bytes": 605997,
+      "sha256": "4dd0cb50e07706e74cb69893a163f02ef5ffcb12cfff4ec92a9409fd012ef74f"
+    }
+  ]
+}
