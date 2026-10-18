@@ -31,7 +31,7 @@ Read SePay's [QR configuration](https://developer.sepay.vn/vi/tien-ich-khac/tao-
 
 ## Operate a table
 
-Staff opens a visit before guests join. Guests scan the table QR or tap NFC, choose dishes and modifiers, and submit a request. Pending requests do not contribute to the bill. Staff confirms or rejects each request; only confirmed dishes enter the kitchen.
+Staff opens a visit before guests join. Guests scan the table QR or tap NFC, choose dishes and modifiers, and submit a request. Pending requests do not contribute to the bill. Staff confirms or rejects each request; only confirmed dishes enter the kitchen. A guest line carries the unit price it saw; if the menu price changed meanwhile, the submission is refused with `PRICE_CHANGED` until the guest re-confirms the new price, so a party is never charged a price it did not see.
 
 Kitchen progresses each line through **queued → preparing → ready**. Floor staff marks delivery as **served**. The cashier can freeze the bill and generate a payment QR only after pending requests and unserved dishes are resolved. Prices, tax, modifiers, and receiving details are snapshotted; editing the menu or branch configuration does not rewrite earlier transactions.
 
@@ -58,6 +58,17 @@ cashier and manager roles see the open queue in the workspace and mark a request
 **Đã xử lý**; the guest status shows an open request until it is handled. Kitchen roles
 do not receive these requests. A closed or expired visit rejects new requests.
 
+## Move a table and mark items sold out
+
+Floor, cashier and manager roles can move an open visit to an empty table (**Chuyển
+bàn**). The target must have no active visit; the guest session stays valid because it is
+bound to the visit, and the freed table accepts a new visit. A closed visit cannot be
+moved.
+
+Kitchen, manager and administrator roles can mark a menu item sold out or available again
+from the workspace (**Tình trạng món**). Guests then see the dish as unavailable and
+cannot order it until it is restored.
+
 ## Open a shift and settle a bill by hand
 
 The dine-in MVP settles tables without any external provider. A cashier or manager
@@ -79,6 +90,23 @@ plus settled cash) and stores the variance and note.
 
 The SePay QR flow below remains available for operators who configure a provider; it is
 independent of manual bills and is not required for the MVP.
+
+## Clean a table between parties
+
+Settling a bill does not free the table. Closing the visit (**Kết thúc lượt**) marks the
+table dirty, and a new visit cannot open on that table until staff mark it clean (**Đã
+dọn bàn**). The floor plan shows a distinct "needs cleaning" state, so the sequence is
+settle → close → clean → seat the next party.
+
+## Discount and refund a bill
+
+A manager can apply a discount to an open bill by amount or percent with a reason
+(**Giảm giá**); the payable amount becomes the bill total minus the discount, and cash
+settlement and the shift drawer use that payable amount. A settled bill is never edited
+in place: a manager refunds it (**Hoàn tiền**) up to the amount actually received,
+recording a method and reason. Cash refunds require an open shift and reduce that shift's
+expected drawer. Every discount and refund is written to the audit log and listed in the
+refund history. A dish that is already in preparation can only be voided by a manager.
 
 ## Confirm payment
 

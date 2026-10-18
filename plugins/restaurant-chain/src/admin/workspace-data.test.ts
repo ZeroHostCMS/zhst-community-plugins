@@ -18,6 +18,7 @@ const empty: Workspace = {
 	shift: null,
 	shifts: [],
 	bills: [],
+	refunds: [],
 	serviceRequests: [],
 	nextCursor: "next",
 };
@@ -26,8 +27,8 @@ test("loading later workspace pages preserves earlier tables and replaces overla
 	const first: Workspace = {
 		...empty,
 		tables: [
-			{ id: "table-a", name: "Bàn A", token: "token-a", version: 1 },
-			{ id: "table-b", name: "Bàn B", token: "token-b", version: 1 },
+			{ id: "table-a", name: "Bàn A", token: "token-a", version: 1, dirty: false },
+			{ id: "table-b", name: "Bàn B", token: "token-b", version: 1, dirty: false },
 		],
 		members: [{ userId: "floor-user", role: "floor", active: true, version: 1 }],
 	};
@@ -35,8 +36,8 @@ test("loading later workspace pages preserves earlier tables and replaces overla
 		...empty,
 		nextCursor: null,
 		tables: [
-			{ id: "table-b", name: "Bàn mới", token: "token-b", version: 2 },
-			{ id: "table-c", name: "Bàn C", token: "token-c", version: 1 },
+			{ id: "table-b", name: "Bàn mới", token: "token-b", version: 2, dirty: false },
+			{ id: "table-c", name: "Bàn C", token: "token-c", version: 1, dirty: false },
 		],
 		members: [{ userId: "floor-user", role: "floor", active: false, version: 2 }],
 	};

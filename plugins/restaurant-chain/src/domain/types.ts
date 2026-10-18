@@ -62,6 +62,7 @@ export interface Table {
 	id: string;
 	name: string;
 	token: string;
+	dirty: boolean;
 	version: number;
 }
 export interface Shift {
@@ -147,12 +148,28 @@ export interface Bill {
 	method: BillMethod | null;
 	reference: string | null;
 	total: number;
+	discount: number;
+	discountReason: string | null;
+	amount: number | null;
+	refunded: number;
 	createdBy: string | null;
 	createdAt: number;
 	settledBy: string | null;
 	settledAt: number | null;
 	version: number;
 	lines: BillLine[];
+}
+export interface Refund {
+	id: string;
+	branchId: string;
+	billId: string;
+	shiftId: string | null;
+	amount: number;
+	method: BillMethod;
+	reason: string;
+	createdBy: string | null;
+	createdAt: number;
+	version: number;
 }
 export interface Payment {
 	id: string;
@@ -227,6 +244,7 @@ export interface Workspace {
 	shift: Shift | null;
 	shifts: Shift[];
 	bills: Bill[];
+	refunds: Refund[];
 	serviceRequests: ServiceRequest[];
 	nextCursor: string | null;
 }
@@ -308,10 +326,15 @@ export interface ActionInputs {
 	};
 	"open-visit": Command & { tableId: string; expectedVersion: number };
 	"close-visit": RevisionCommand;
+	"clean-table": Command & { tableId: string; expectedVersion: number };
+	"transfer-visit": RevisionCommand & { tableId: string };
+	"set-menu-availability": RevisionCommand & { available: boolean };
 	"open-shift": Command & { openingFloat: number };
 	"close-shift": RevisionCommand & { countedCash: number; note: string };
 	"freeze-bill": RevisionCommand;
 	"settle-bill": RevisionCommand & { method: BillMethod; reference: string };
+	"apply-discount": RevisionCommand & { amount?: number; percent?: number; reason: string };
+	"refund-bill": RevisionCommand & { amount: number; method: BillMethod; reason: string };
 	"call-service": { commandId: string; token: string; kind: ServiceKind; note: string };
 	"attend-request": RevisionCommand;
 	"join-table": { commandId: string; tableToken: string };
@@ -322,7 +345,12 @@ export interface ActionInputs {
 		token: string;
 		expectedVersion: number;
 		note: string;
-		lines: { menuItemId: string; quantity: number; modifierIds: string[] }[];
+		lines: {
+			menuItemId: string;
+			quantity: number;
+			modifierIds: string[];
+			expectedUnitPrice?: number;
+		}[];
 	};
 	"confirm-order": RevisionCommand;
 	"reject-order": RevisionCommand & { reason: string };

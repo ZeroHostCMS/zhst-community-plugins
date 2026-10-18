@@ -46,6 +46,7 @@ import type {
 	LineRow,
 	MenuRow,
 	OrderRow,
+	RefundRow,
 	ServiceRequestRow,
 	ShiftRow,
 	VisitRow,
@@ -90,6 +91,12 @@ export class RestaurantService {
 					return await this.openVisit(schemas["open-visit"].parse(input));
 				case "close-visit":
 					return await this.closeVisit(schemas["close-visit"].parse(input));
+				case "clean-table":
+					return await this.cleanTable(schemas["clean-table"].parse(input));
+				case "transfer-visit":
+					return await this.transferVisit(schemas["transfer-visit"].parse(input));
+				case "set-menu-availability":
+					return await this.setMenuAvailability(schemas["set-menu-availability"].parse(input));
 				case "open-shift":
 					return await this.openShift(schemas["open-shift"].parse(input));
 				case "close-shift":
@@ -98,6 +105,10 @@ export class RestaurantService {
 					return await this.freezeBill(schemas["freeze-bill"].parse(input));
 				case "settle-bill":
 					return await this.settleBill(schemas["settle-bill"].parse(input));
+				case "apply-discount":
+					return await this.applyDiscount(schemas["apply-discount"].parse(input));
+				case "refund-bill":
+					return await this.refundBill(schemas["refund-bill"].parse(input));
 				case "call-service":
 					return await this.callService(schemas["call-service"].parse(input));
 				case "attend-request":
@@ -385,10 +396,10 @@ export class RestaurantService {
 		const cursor = input.cursor ?? "";
 		const privateFinance = access.role === "administrator" || finance.includes(access.role);
 		const manager = access.role === "administrator" || access.role === "manager";
-		const [tables, visits, menu, orders, members, payments, invoices, jobs, exceptions, bills, shift, shifts, serviceRequests] =
+		const [tables, visits, menu, orders, members, payments, invoices, jobs, exceptions, bills, shift, shifts, serviceRequests, refunds] =
 			await Promise.all([
-				this.rows<Table>(
-					"SELECT id,name,token,version FROM rc_tables WHERE branch_id=? AND id>? ORDER BY id LIMIT ?",
+				this.rows<Omit<Table, "dirty"> & { dirty: number }>(
+					"SELECT id,name,token,version,dirty FROM rc_tables WHERE branch_id=? AND id>? ORDER BY id LIMIT ?",
 					branch.id,
 					cursor,
 					limit + 1,
@@ -498,8 +509,16 @@ export class RestaurantService {
 							cursor,
 							limit + 1,
 						),
+				privateFinance
+					? this.rows<RefundRow>(
+							`SELECT ${columns.refund} FROM rc_refunds WHERE branch_id=? AND id>? ORDER BY id LIMIT ?`,
+							branch.id,
+							cursor,
+							limit + 1,
+						)
+					: [],
 			]);
-		const pages = [tables, visits, menu, orders, payments, invoices, jobs, exceptions, bills, serviceRequests];
+		const pages = [tables, visits, menu, orders, payments, invoices, jobs, exceptions, bills, serviceRequests, refunds];
 		const boundaries = pages
 			.filter((page) => page.length > limit)
 			.map((page) => page[limit - 1]!.id);
@@ -513,7 +532,7 @@ export class RestaurantService {
 					? branch
 					: { id: branch.id, name: branch.name, version: branch.version },
 			role: access.role,
-			tables: trim(tables),
+			tables: trim(tables).map((table) => ({ ...table, dirty: table.dirty === 1 })),
 			visits: trim(visits),
 			menu: trim(menu).map(menuDto),
 			orders: trim(orders),
@@ -528,6 +547,7 @@ export class RestaurantService {
 			shift: shift ?? null,
 			shifts,
 			bills: trim(bills),
+			refunds: trim(refunds),
 			serviceRequests: trim(serviceRequests),
 			nextCursor,
 		};
@@ -703,7 +723,7 @@ export class RestaurantService {
 				statements: [
 					...this.fenced(
 						this.stmt(
-							"UPDATE rc_tables SET version=version+1 WHERE branch_id=? AND id=? AND version=?",
+							"UPDATE rc_tables SET version=version+1 WHERE branch_id=? AND id=? AND version=? AND dirty=0",
 							input.branchId,
 							input.tableId,
 							input.expectedVersion,
@@ -746,11 +766,119 @@ export class RestaurantService {
 							input.id,
 						),
 					),
+					this.stmt(
+						"UPDATE rc_tables SET dirty=1,version=version+1 WHERE branch_id=? AND id=(SELECT table_id FROM rc_visits WHERE id=?) AND dirty=0",
+						input.branchId,
+						input.id,
+					),
 				],
 				result: { id: input.id, version: input.expectedVersion + 1 },
 				branchId: input.branchId,
 				entityId: input.id,
 			}),
+		);
+	}
+	private async cleanTable(input: ActionInputs["clean-table"]): Promise<unknown> {
+		const access = await this.access(input.branchId, floor);
+		return this.commit(await this.context("clean-table", input, access), "clean-table", async () => ({
+			statements: [
+				...this.fenced(
+					this.stmt(
+						"UPDATE rc_tables SET dirty=0,version=version+1 WHERE branch_id=? AND id=? AND version=? AND dirty=1",
+						input.branchId,
+						input.tableId,
+						input.expectedVersion,
+					),
+				),
+			],
+			result: { id: input.tableId, version: input.expectedVersion + 1 },
+			branchId: input.branchId,
+			entityId: input.tableId,
+		}));
+	}
+	private async transferVisit(input: ActionInputs["transfer-visit"]): Promise<unknown> {
+		const access = await this.access(input.branchId, floor);
+		return this.commit(await this.context("transfer-visit", input, access), "transfer-visit", async () => {
+			const visit = await this.visit(input.branchId, input.id);
+			if (visit.status === "closed")
+				throw new DomainError("CONFLICT", "This visit is already closed", 409);
+			if (visit.tableId === input.tableId)
+				throw new DomainError("SAME_TABLE", "The visit is already on this table", 409);
+			const table = await this.required<{ id: string }>(
+				"SELECT id FROM rc_tables WHERE branch_id=? AND id=?",
+				input.branchId,
+				input.tableId,
+			);
+			return {
+				statements: [
+					...this.assertion(
+						"EXISTS(SELECT 1 FROM rc_tables WHERE branch_id=? AND id=? AND dirty=0)",
+						input.branchId,
+						table.id,
+					),
+					...this.assertion(
+						"NOT EXISTS(SELECT 1 FROM rc_visits WHERE table_id=? AND status<>'closed' AND id<>?)",
+						table.id,
+						visit.id,
+					),
+					...this.fenced(
+						this.stmt(
+							"UPDATE rc_visits SET table_id=?,version=version+1 WHERE branch_id=? AND id=? AND version=? AND status<>'closed'",
+							table.id,
+							input.branchId,
+							input.id,
+							input.expectedVersion,
+						),
+					),
+					this.stmt(
+						"UPDATE rc_tables SET version=version+1 WHERE branch_id=? AND id=?",
+						input.branchId,
+						table.id,
+					),
+					this.stmt(
+						"UPDATE rc_tables SET version=version+1 WHERE branch_id=? AND id=?",
+						input.branchId,
+						visit.tableId,
+					),
+				],
+				result: { id: input.id, version: input.expectedVersion + 1, tableId: table.id },
+				branchId: input.branchId,
+				entityId: input.id,
+				detail: { from: visit.tableId, to: table.id },
+			};
+		});
+	}
+	private async setMenuAvailability(
+		input: ActionInputs["set-menu-availability"],
+	): Promise<unknown> {
+		const access = await this.access(input.branchId, ["manager", "kitchen"]);
+		return this.commit(
+			await this.context("set-menu-availability", input, access),
+			"set-menu-availability",
+			async () => {
+				await this.required<{ id: string }>(
+					"SELECT id FROM rc_menu WHERE branch_id=? AND id=?",
+					input.branchId,
+					input.id,
+				);
+				return {
+					statements: [
+						...this.fenced(
+							this.stmt(
+								"UPDATE rc_menu SET available=?,version=version+1 WHERE branch_id=? AND id=? AND version=?",
+								Number(input.available),
+								input.branchId,
+								input.id,
+								input.expectedVersion,
+							),
+						),
+					],
+					result: { id: input.id, version: input.expectedVersion + 1 },
+					branchId: input.branchId,
+					entityId: input.id,
+					detail: { available: input.available },
+				};
+			},
 		);
 	}
 	private async openShift(input: ActionInputs["open-shift"]): Promise<unknown> {
@@ -759,10 +887,6 @@ export class RestaurantService {
 			const id = crypto.randomUUID();
 			return {
 				statements: [
-					...this.assertion(
-						"NOT EXISTS(SELECT 1 FROM rc_shifts WHERE branch_id=? AND status='open')",
-						input.branchId,
-					),
 					this.stmt(
 						"INSERT INTO rc_shifts(id,branch_id,status,opened_by,opened_at,opening_float) VALUES (?,?,'open',?,?,?)",
 						id,
@@ -790,11 +914,19 @@ export class RestaurantService {
 			if (shift.status !== "open")
 				throw new DomainError("CONFLICT", "This shift is already closed", 409);
 			const cash = await this.required<{ total: number }>(
-				"SELECT COALESCE(SUM(total),0) AS total FROM rc_bills WHERE branch_id=? AND shift_id=? AND status='settled' AND method='cash'",
+				"SELECT COALESCE(SUM(COALESCE(amount,total)),0) AS total FROM rc_bills WHERE branch_id=? AND shift_id=? AND status='settled' AND method='cash'",
 				input.branchId,
 				input.id,
 			);
-			const expectedCash = exactVnd(BigInt(shift.openingFloat) + BigInt(cash.total));
+			const refunds = await this.required<{ total: number }>(
+				"SELECT COALESCE(SUM(amount),0) AS total FROM rc_refunds WHERE branch_id=? AND shift_id=? AND method='cash'",
+				input.branchId,
+				input.id,
+			);
+			const expectedCash = exactVnd(
+				BigInt(shift.openingFloat) + BigInt(cash.total) - BigInt(refunds.total),
+				true,
+			);
 			const variance = input.countedCash - expectedCash;
 			return {
 				statements: [
@@ -898,13 +1030,19 @@ export class RestaurantService {
 	private async settleBill(input: ActionInputs["settle-bill"]): Promise<unknown> {
 		const access = await this.access(input.branchId, ["manager", "cashier"]);
 		return this.commit(await this.context("settle-bill", input, access), "settle-bill", async () => {
-			const bill = await this.required<{ visitId: string; status: string }>(
-				"SELECT visit_id AS visitId,status FROM rc_bills WHERE branch_id=? AND id=?",
+			const bill = await this.required<{
+				visitId: string;
+				status: string;
+				total: number;
+				discount: number;
+			}>(
+				"SELECT visit_id AS visitId,status,total,discount FROM rc_bills WHERE branch_id=? AND id=?",
 				input.branchId,
 				input.id,
 			);
 			if (bill.status !== "open")
 				throw new DomainError("CONFLICT", "This bill is already settled", 409);
+			const payable = exactVnd(BigInt(bill.total) - BigInt(bill.discount));
 			const shift = await this.stmt("SELECT id FROM rc_shifts WHERE branch_id=? AND status='open'")
 				.bind(input.branchId)
 				.first<{ id: string }>();
@@ -914,12 +1052,13 @@ export class RestaurantService {
 				statements: [
 					...this.fenced(
 						this.stmt(
-							"UPDATE rc_bills SET status='settled',method=?,reference=?,shift_id=?,settled_by=?,settled_at=?,version=version+1 WHERE branch_id=? AND id=? AND version=? AND status='open'",
+							"UPDATE rc_bills SET status='settled',method=?,reference=?,shift_id=?,settled_by=?,settled_at=?,amount=?,version=version+1 WHERE branch_id=? AND id=? AND version=? AND status='open'",
 							input.method,
 							input.reference || null,
 							shift?.id ?? null,
 							this.actor?.id ?? null,
 							Date.now(),
+							payable,
 							input.branchId,
 							input.id,
 							input.expectedVersion,
@@ -932,10 +1071,102 @@ export class RestaurantService {
 						input.branchId,
 					),
 				],
-				result: { id: input.id, version: input.expectedVersion + 1 },
+				result: { id: input.id, version: input.expectedVersion + 1, amount: payable },
 				branchId: input.branchId,
 				entityId: input.id,
-				detail: { visitId: bill.visitId, method: input.method, reference: input.reference || null },
+				detail: {
+					visitId: bill.visitId,
+					method: input.method,
+					reference: input.reference || null,
+					discount: bill.discount,
+					amount: payable,
+				},
+			};
+		});
+	}
+	private async applyDiscount(input: ActionInputs["apply-discount"]): Promise<unknown> {
+		const access = await this.access(input.branchId, ["manager"]);
+		return this.commit(await this.context("apply-discount", input, access), "apply-discount", async () => {
+			const bill = await this.required<{ status: string; total: number }>(
+				"SELECT status,total FROM rc_bills WHERE branch_id=? AND id=?",
+				input.branchId,
+				input.id,
+			);
+			if (bill.status !== "open")
+				throw new DomainError("CONFLICT", "Only an open bill can be discounted", 409);
+			const discount = input.amount ?? Math.floor((bill.total * (input.percent ?? 0)) / 100);
+			if (discount <= 0 || discount > bill.total)
+				throw new DomainError(
+					"INVALID_DISCOUNT",
+					"The discount must be positive and within the bill total",
+				);
+			return {
+				statements: [
+					...this.fenced(
+						this.stmt(
+							"UPDATE rc_bills SET discount=?,discount_reason=?,version=version+1 WHERE branch_id=? AND id=? AND version=? AND status='open'",
+							discount,
+							input.reason,
+							input.branchId,
+							input.id,
+							input.expectedVersion,
+						),
+					),
+				],
+				result: { id: input.id, version: input.expectedVersion + 1, discount },
+				branchId: input.branchId,
+				entityId: input.id,
+				detail: { discount, percent: input.percent ?? null, reason: input.reason },
+			};
+		});
+	}
+	private async refundBill(input: ActionInputs["refund-bill"]): Promise<unknown> {
+		const access = await this.access(input.branchId, ["manager"]);
+		return this.commit(await this.context("refund-bill", input, access), "refund-bill", async () => {
+			const bill = await this.required<{ status: string; amount: number | null; refunded: number }>(
+				"SELECT status,amount,refunded FROM rc_bills WHERE branch_id=? AND id=?",
+				input.branchId,
+				input.id,
+			);
+			if (bill.status !== "settled" || bill.amount === null)
+				throw new DomainError("CONFLICT", "Only a settled bill can be refunded", 409);
+			if (input.amount > bill.amount - bill.refunded)
+				throw new DomainError("REFUND_EXCEEDS", "The refund exceeds the retained amount", 409);
+			const shift = await this.stmt("SELECT id FROM rc_shifts WHERE branch_id=? AND status='open'")
+				.bind(input.branchId)
+				.first<{ id: string }>();
+			if (input.method === "cash" && !shift)
+				throw new DomainError("SHIFT_REQUIRED", "Open a shift before refunding cash", 409);
+			const refundId = crypto.randomUUID();
+			return {
+				statements: [
+					...this.fenced(
+						this.stmt(
+							"UPDATE rc_bills SET refunded=refunded+?,version=version+1 WHERE branch_id=? AND id=? AND version=? AND status='settled' AND amount IS NOT NULL AND refunded+?<=amount",
+							input.amount,
+							input.branchId,
+							input.id,
+							input.expectedVersion,
+							input.amount,
+						),
+					),
+					this.stmt(
+						"INSERT INTO rc_refunds(id,branch_id,bill_id,shift_id,amount,method,reason,created_by,created_at) VALUES (?,?,?,?,?,?,?,?,?)",
+						refundId,
+						input.branchId,
+						input.id,
+						shift?.id ?? null,
+						input.amount,
+						input.method,
+						input.reason,
+						this.actor?.id ?? null,
+						Date.now(),
+					),
+				],
+				result: { id: input.id, version: input.expectedVersion + 1, refundId },
+				branchId: input.branchId,
+				entityId: input.id,
+				detail: { refundId, amount: input.amount, method: input.method, reason: input.reason },
 			};
 		});
 	}
@@ -1148,6 +1379,15 @@ export class RestaurantService {
 						BigInt(item.price) +
 							selected.reduce((sum, modifier) => sum + BigInt(modifier.price), 0n),
 					);
+					if (
+						requested.expectedUnitPrice !== undefined &&
+						requested.expectedUnitPrice !== unitPrice
+					)
+						throw new DomainError(
+							"PRICE_CHANGED",
+							"The menu price changed. Review the new price and submit again.",
+							409,
+						);
 					const lineTotal = exactVnd(BigInt(unitPrice) * BigInt(requested.quantity));
 					total += BigInt(lineTotal);
 					statements.push(
@@ -1198,6 +1438,18 @@ export class RestaurantService {
 			input.branchId,
 			action === "void-order" ? ["manager", "cashier"] : floor,
 		);
+		if (action === "void-order" && access.role === "cashier") {
+			const preparing = await this.stmt(
+				"SELECT COUNT(*) AS count FROM rc_order_lines WHERE order_id=? AND kitchen_status='preparing'",
+				input.id,
+			).first<{ count: number }>();
+			if (preparing && preparing.count > 0)
+				throw new DomainError(
+					"MANAGER_REQUIRED",
+					"Only a manager can void an item already in preparation",
+					403,
+				);
+		}
 		return this.commit(await this.context(action, input, access), action, async () => {
 			const order = await this.required<OrderRow>(
 				`SELECT ${columns.order} FROM rc_orders WHERE branch_id=? AND id=?`,
